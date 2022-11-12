@@ -76,6 +76,38 @@ function HomeScreen({ setTripId, navigation }) {
             }
         )
     }
+    const clearDataAsync = async () => {
+        setObjAlert({
+            ...objAlert,
+            title: null
+        })
+        axios.delete(AppUntil.RequestApi("/trip/delete-async/"), await AppUntil.RequsetHeader()).then(
+            (res) => {
+                if (res?.data?.isSuccess) {
+                    showMessage({
+                        position: "top",
+                        message: "Clear data successfully!",
+                        type: "success",
+                        autoHide: true,
+                        showMessage: true
+                    });
+                    loadData()
+                }
+                setObjAlert(AppUntil.objectDefaultAlert())
+            }
+        ).catch(
+            e => {
+                showMessage({
+                    position: "top",
+                    message: "Delete trip fail!",
+                    type: "danger",
+                    autoHide: true,
+                    showMessage: true
+                });
+                closeAlert()
+            }
+        )
+    }
 
     const closeAlert = () => {
         setObjAlert(AppUntil.objectDefaultAlert())
@@ -90,6 +122,27 @@ function HomeScreen({ setTripId, navigation }) {
 
                     </Text>
                 </View>
+
+                <View style={{ flex: 0.5, marginRight: 5 }}>
+                    <Button
+                        icon={(props) => <Icon {...props} name="trash" />}
+                        mode="contained"
+                        onPress={() => {
+                            setObjAlert({
+                                ...objAlert,
+                                title: "Confirm clear data!",
+                                message: "Do you want to clear data?",
+                                status: true,
+                                onConfirmPressed: clearDataAsync
+                            })
+                        }}
+                        color="#841584"
+                        style={{ backgroundColor: "#990000" }}
+                    >
+                        Clear all data
+                    </Button>
+                </View>
+
                 <View style={{ flex: 0.5 }}>
                     <Button
                         icon={(props) => <Icon {...props} name="plus" />}
@@ -118,6 +171,7 @@ function HomeScreen({ setTripId, navigation }) {
                         Create Trip
                     </Button>
                 </View>
+
             </View>
             <View style={{ marginBottom: 20, flexDirection: "row" }}>
                 <View style={{ flex: 1 }}>

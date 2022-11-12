@@ -67,7 +67,12 @@ function TripDetailScreen({ tripId }) {
             params: { tripId, searchText }
         }).then(
             (res) => {
+                const totalPrice = _.sumBy(res?.data?.results, x => x.price)
                 setDataDestination(res?.data?.results)
+                setDataTrip({
+                    ...dataTrip,
+                    totalPrice
+                })
             }
         )
     }
@@ -155,7 +160,6 @@ function TripDetailScreen({ tripId }) {
                                             type: "success",
                                             autoHide: true,
                                             showMessage: true,
-
                                         });
                                         onLoadData();
                                     }}

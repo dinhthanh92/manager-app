@@ -27,19 +27,32 @@ function App({ }) {
   useEffect(() => {
     checkLogin()
   }, []);
+  useEffect(() => {
+    setType()
+  }, [isLogin]);
 
   const checkLogin = async () => {
     axios.get(AppUntil.RequestApi("/check-auth/check-login-native"),
       await AppUntil.RequsetHeader()).then(
         (res) => {
           setIsLogin(true)
-          setTypeUser(res?.data?.results.type)
         }
       ).catch(
         err => {
           setIsLogin(false)
         }
       )
+  }
+  const setType = async () => {
+    axios.get(AppUntil.RequestApi("/check-auth/check-login-native"),
+        await AppUntil.RequsetHeader()).then(
+        (res) => {
+          setTypeUser(res?.data?.results.type)
+        }
+    ).catch(
+        err => {
+        }
+    )
   }
 
   const onSignOut = () => {

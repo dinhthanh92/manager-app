@@ -5,13 +5,10 @@ import {
     Text,
     View, LogBox
 } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import MapView, { Marker } from 'react-native-maps';
 import { BarChart, PieChart } from "react-native-gifted-charts";
 import { AppUntil } from '../../../AppUntil';
 import _ from "lodash"
 import Icon from 'react-native-vector-icons/FontAwesome';
-import MonthPicker from 'react-native-month';
 import { Button } from 'react-native-paper';
 
 

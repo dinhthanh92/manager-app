@@ -10,7 +10,7 @@ const URL_HOST = "http://192.168.1.17:8080/api"
 
 // const URL_HOST = "http://172.16.2.22:8080/api"
 
-export const API_PLACE_GOOGLE = "AIzaSyBa84lPD2gfbk9n_Rm3ZXfbjWEG8dVmJv8";
+export const API_PLACE_GOOGLE = "AIzaSyAlEVCVx7A-j4finwCR_h2i4SjtIyruEug";
 
 export const API_GOOGLE_PLACE = `https://maps.googleapis.com/maps/api/place/textsearch/json?key=${API_PLACE_GOOGLE}&query=`;
 
